@@ -10,14 +10,20 @@ let package = Package(
         .library(
             name: "UnoGameUtility",
             targets: ["UnoGameUtility"]),
+    ], dependencies: [
+        .package(url: "https://github.com/daltoniam/Starscream", .upToNextMajor(from: "4.0.8")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "UnoGameUtility"),
+            name: "UnoGameUtility",
+            dependencies: [
+                .product(name: "Starscream", package: "Starscream")
+            ]
+        ),
+
         .testTarget(
             name: "UnoGameUtilityTests",
             dependencies: ["UnoGameUtility"]),
-    ]
-)
+    ])
