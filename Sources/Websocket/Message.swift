@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message: Codable & Equatable {
+public struct Message: Codable & Equatable {
     let type: MessageType
     let content: String
     let sender: String

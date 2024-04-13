@@ -7,10 +7,12 @@
 
 import Foundation
 
-class Server {
-    private var rooms: [Room] = [Room.lobby]
+public class Server {
+    var rooms: [Room] = []
 
-    init() {}
+    init() {
+        rooms = [Room(name: "Lobby", server: self)]
+    }
 
     func addClient(_ client: Client, to roomName: String) throws {
         if let room = rooms.filter({ $0.name == roomName }).first {

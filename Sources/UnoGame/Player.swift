@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Player {
+public class Player: Hashable {
     let name: String
     var cards = [Card]()
     var isReady = false
@@ -35,6 +35,14 @@ public class Player {
         _ = cards.removeFirst {
             card.same(as: $0)
         }
+    }
+    
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    public static func == (lhs: Player, rhs: Player) -> Bool {
+        lhs.name == rhs.name
     }
 
     enum State {

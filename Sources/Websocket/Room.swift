@@ -8,34 +8,33 @@
 import Foundation
 
 public class Room {
+    let server: Server
     var name: String
-    var players: Set<Player>
+    var clients: Set<Client>
+    
 
     var numberOfReadyMember: Int {
         var result = 0
-        players.forEach { result += $0.isReady ? 1 : 0 }
+        clients.forEach { result += $0.isReady ? 1 : 0 }
         return result
     }
 
-    static let lobby = Room(name: "Lobby")
 
-    init(name: String, members: Set<Player>? = nil) {
+    public init(name: String, server: Server, members: Set<Client> = []) {
         self.name = name
-        self.players = members ?? []
+        self.server = server
+        self.clients = members
     }
 
-    func addPlayer(_ player: Player) throws {
-        if players.contains(player) {
-            throw ServerError.clientAlreadyExists(name: player.name)
+    public func addClient(_ client: Client) throws {
+        if clients.contains(client) {
+            throw ServerError.clientAlreadyExists(name: client.name)
         }
 
-        if players.count == 0 {
-//            client.isHost = true
+        if clients.count == 0 {
+            client.isHost = true
         }
-        players.insert(player)
+        clients.insert(client)
     }
-    
-    func addPlayer(from client: Client) throws {
-        
-    }
+
 }
