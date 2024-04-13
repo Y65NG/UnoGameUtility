@@ -8,12 +8,12 @@
 import Foundation
 
 public class Room {
-    let server: Server
-    var name: String
-    var clients: Set<Client>
+    public let server: Server
+    public var name: String
+    public var clients: Set<Client>
     
 
-    var numberOfReadyMember: Int {
+    public var numberOfReadyMember: Int {
         var result = 0
         clients.forEach { result += $0.isReady ? 1 : 0 }
         return result

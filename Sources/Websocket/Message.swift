@@ -12,7 +12,7 @@ public struct Message: Codable & Equatable {
     let content: String
     let sender: String
     
-    enum MessageType: Hashable & Codable {
+    public enum MessageType: Hashable & Codable {
         case message
         case disconnect
     }

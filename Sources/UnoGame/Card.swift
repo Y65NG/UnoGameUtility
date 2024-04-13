@@ -10,36 +10,36 @@ import Foundation
 public struct Card: CustomDebugStringConvertible & Identifiable & Comparable & Equatable {
     public var id: String
     
-    let content: Content
-    let color: Color
+    public let content: Content
+    public let color: Color
     
-    var isFaceUp: Bool = false
+    public var isFaceUp: Bool = false
     
-    var isWild: Bool {
+    public var isWild: Bool {
         color == .none
     }
     
-    var isFunctional: Bool {
+    public var isFunctional: Bool {
         isWild || content == .skip || content == .reverse || content == .drawTwo
     }
     
-    func similar(to card: Card?) -> Bool {
+    public func similar(to card: Card?) -> Bool {
         content == card?.content || color == card?.color
     }
     
-    func same(as card: Card?) -> Bool {
+    public func same(as card: Card?) -> Bool {
         content == card?.content && color == card?.color
     }
     
-    func canBeat(_ card: Card?) -> Bool {
+    public func canBeat(_ card: Card?) -> Bool {
         if let card {
             return isWild || similar(to: card)
         }
         return true
     }
     
-    enum Content: Int, CaseIterable, CustomStringConvertible {
-        var description: String {
+    public enum Content: Int, CaseIterable, CustomStringConvertible {
+        public var description: String {
             switch self {
             case .drawTwo: return "+2"
             case .skip: return "skip"
@@ -54,7 +54,7 @@ public struct Card: CustomDebugStringConvertible & Identifiable & Comparable & E
         case drawTwo, skip, reverse, wild, drawFour
     }
     
-    enum Color: Int, CaseIterable {
+    public enum Color: Int, CaseIterable {
         case red
         case blue
         case yellow

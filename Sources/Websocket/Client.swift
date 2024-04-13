@@ -9,17 +9,17 @@ import Foundation
 import Starscream
 
 public class Client: Hashable & Equatable {
-    var name: String
-    var socket: WebSocket
-    var server: Server?
-    var room: Room?
-    var player: Player?
-    var isHost: Bool
+    public var name: String
+    public var socket: WebSocket
+    public var server: Server?
+    public var room: Room?
+    public var player: Player?
+    public var isHost: Bool
     
-    var isReady: Bool { player?.isReady ?? false}
+    public var isReady: Bool { player?.isReady ?? false}
     
 
-    init(name: String, server: Server) {
+    public init(name: String, server: Server) {
         self.name = name
         self.server = server
         isHost = false

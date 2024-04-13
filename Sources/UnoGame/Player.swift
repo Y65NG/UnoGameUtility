@@ -8,16 +8,16 @@
 import Foundation
 
 public class Player: Hashable {
-    let name: String
-    var cards = [Card]()
-    var isReady = false
-    var status: State = .pending
+    public let name: String
+    public var cards = [Card]()
+    public var isReady = false
+    public var status: State = .pending
     
-    init(name: String) {
+    public init(name: String) {
         self.name = name
     }
 
-    func draw(_ numberOfCards: Int, from deck: inout Deck) throws {
+    public func draw(_ numberOfCards: Int, from deck: inout Deck) throws {
         var dealtCards: [Card]
         dealtCards = try deck.deal(numberOfCards)
 
@@ -25,7 +25,7 @@ public class Player: Hashable {
         cards.sort()
     }
 
-    func use(_ card: Card, toBeat lastCard: Card) throws {
+    public func use(_ card: Card, toBeat lastCard: Card) throws {
         if !cards.contains(card) {
             throw GameLogicError.noSuchElement(element: card)
         }
@@ -45,12 +45,12 @@ public class Player: Hashable {
         lhs.name == rhs.name
     }
 
-    enum State {
+    public enum State {
         case pending
         case action(Action)
         case message(String)
 
-        enum Action {
+        public enum Action {
             case drawCards
             case useCards
             case newTurn
@@ -59,7 +59,7 @@ public class Player: Hashable {
 }
 
 extension [Card] {
-    mutating func removeFirst(where cmp: (Card) -> Bool) -> Card? {
+    public mutating func removeFirst(where cmp: (Card) -> Bool) -> Card? {
         var cardToRemove: Card?
         for (idx, card) in self.enumerated() {
             if cmp(card) {

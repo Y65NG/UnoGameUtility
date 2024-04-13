@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Deck {
-    var cards = [Card]()
+    public var cards = [Card]()
     
-    init() {
+    public init() {
         var idNumber = 0
         for color in Card.Color.allCases {
             for content in Card.Content.allCases {
@@ -28,15 +28,15 @@ public struct Deck {
         }
     }
     
-    var count: Int {
+    public var count: Int {
         cards.count
     }
     
-    mutating func shuffle() {
+    public mutating func shuffle() {
         cards.shuffle()
     }
     
-    mutating func deal(_ numberOfCards: Int) throws -> [Card] {
+    public mutating func deal(_ numberOfCards: Int) throws -> [Card] {
         if numberOfCards > count {
             throw GameLogicError.indexOutOfBound(bound: count)
         }
